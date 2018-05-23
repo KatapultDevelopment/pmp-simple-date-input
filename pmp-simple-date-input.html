@@ -18,6 +18,68 @@
       :host {
         display: block;
       }
+      input {
+        position: relative; /* to make a stacking context */
+        outline: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--paper-input-container-input-color, var(--primary-text-color));
+        -webkit-appearance: none;
+        text-align: inherit;
+        vertical-align: bottom;
+
+        /* Firefox sets a min-width on the input, which can cause layout issues */
+        min-width: 0;
+
+        @apply --paper-font-subhead;
+        @apply --paper-input-container-input;
+      }
+
+      input:disabled {
+        @apply --paper-input-container-input-disabled;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        @apply --paper-input-container-input-webkit-spinner;
+      }
+
+      input::-webkit-clear-button {
+        @apply --paper-input-container-input-webkit-clear;
+      }
+
+      input::-webkit-calendar-picker-indicator {
+        @apply --paper-input-container-input-webkit-calendar-picker-indicator;
+      }
+
+      input::-webkit-input-placeholder {
+        color: var(--paper-input-container-color, var(--secondary-text-color));
+      }
+
+      input:-moz-placeholder {
+        color: var(--paper-input-container-color, var(--secondary-text-color));
+      }
+
+      input::-moz-placeholder {
+        color: var(--paper-input-container-color, var(--secondary-text-color));
+      }
+
+      input::-ms-clear {
+        @apply --paper-input-container-ms-clear;
+      }
+
+      input::-ms-reveal {
+        @apply --paper-input-container-ms-reveal;
+      }
+
+      input:-ms-input-placeholder {
+        color: var(--paper-input-container-color, var(--secondary-text-color));
+      }
     </style>
 
     <paper-input-container id="container"
@@ -25,25 +87,27 @@
       always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]"
       invalid="[[invalid]]">
 
-    <label hidden$="[[!label]]">[[label]]</label>
+    <label hidden$="[[!label]]" slot="label">[[label]]</label>
 
-    <input is="iron-input" id="input"
-      aria-labelledby$="[[_ariaLabelledBy]]"
-      aria-describedby$="[[_ariaDescribedBy]]"
-      disabled$="[[disabled]]"
-      bind-value="{{value}}"
-      required$="[[required]]"
-      name$="[[name]]"
-      prevent-invalid-input
-      invalid="{{invalid}}"
-      autofocus$="[[autofocus]]"
-      inputmode$="[[inputmode]]"
+    <iron-input bind-value="{{value}}" slot="input"
+      id="input"
       maxlength$="[[maxlength]]"
       allowed-pattern="[0-9\/]"
-      placeholder$="[[placeholder]]">
+      invalid="{{invalid}}">
+      <input aria-labelledby$="[[_ariaLabelledBy]]"
+        aria-describedby$="[[_ariaDescribedBy]]"
+        disabled$="[[disabled]]"
+        bind-value="{{value}}"
+        required$="[[required]]"
+        name$="[[name]]"
+        prevent-invalid-input
+        autofocus$="[[autofocus]]"
+        inputmode$="[[inputmode]]"
+        placeholder$="[[placeholder]]">
+    </iron-input>
 
     <template is="dom-if" if="[[errorMessage]]">
-      <paper-input-error id="error">[[errorMessage]]</paper-input-error>
+      <paper-input-error id="error" slot="error">[[errorMessage]]</paper-input-error>
     </template>
 
     </paper-input-container>
