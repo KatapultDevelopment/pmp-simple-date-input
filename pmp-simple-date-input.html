@@ -90,11 +90,11 @@
     <label hidden$="[[!label]]" slot="label">[[label]]</label>
 
     <iron-input bind-value="{{value}}" slot="input"
-      id="input"
       maxlength$="[[maxlength]]"
       allowed-pattern="[0-9\/]"
       invalid="{{invalid}}">
-      <input aria-labelledby$="[[_ariaLabelledBy]]"
+      <input id="input"
+        aria-labelledby$="[[_ariaLabelledBy]]"
         aria-describedby$="[[_ariaDescribedBy]]"
         disabled$="[[disabled]]"
         bind-value="{{value}}"
