@@ -90,10 +90,11 @@
     <label hidden$="[[!label]]" slot="label">[[label]]</label>
 
     <iron-input bind-value="{{value}}" slot="input"
+      id="input"
       maxlength$="[[maxlength]]"
       allowed-pattern="[0-9\/]"
       invalid="{{invalid}}">
-      <input id="input"
+      <input
         aria-labelledby$="[[_ariaLabelledBy]]"
         aria-describedby$="[[_ariaDescribedBy]]"
         disabled$="[[disabled]]"
@@ -179,7 +180,7 @@
                 if (typeof oldValue === 'undefined' || value === oldValue)
                     return;
                 value = value ? value.toString() : '';
-                let start = this.$.input.selectionStart;
+                let start = this.$.input.inputElement.selectionStart;
                 let initialSlashesBeforeCaret = value.substr(0, start).split('/').length - 1;
                 value = value.replace(/\//g, '');
                 let shouldFormat = value.length <= this.datePattern.replace(/\//g, '').length;
@@ -198,7 +199,7 @@
                 let updatedSlashesBeforeCaret = formattedValue.substr(0, start).split('/').length - 1;
                 let slashesDifference = updatedSlashesBeforeCaret - initialSlashesBeforeCaret;
                 this.updateValueAndPreserveCaret(formattedValue.trim());
-                this.$.input.selectionStart = this.$.input.selectionEnd = start + slashesDifference;
+                this.$.input.inputElement.selectionStart = this.$.input.inputElement.selectionEnd = start + slashesDifference;
                 this._handleAutoValidate();
             },
 
