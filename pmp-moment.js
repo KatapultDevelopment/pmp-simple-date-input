@@ -1,1 +1,1 @@
-import 'moment/min/moment.min.js';
+import 'moment/src/moment.js';
