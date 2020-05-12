@@ -16,7 +16,7 @@ import '@polymer/paper-input/paper-input-container.js';
 import '@polymer/iron-input/iron-input.js';
 import '@polymer/paper-input/paper-input-error.js';
 import { IronFormElementBehavior } from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
-import './pmp-moment.js';
+import moment from 'moment';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 Polymer({
